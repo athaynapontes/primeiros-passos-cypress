@@ -16,11 +16,10 @@ const selectorsList = {
   genericField: ".oxd-input--active",
   dateField: "[placeholder='yyyy-dd-mm']",
   dateCloseButton: ".--close",
-  submitButton: "[type='submit']"
+  submitButton: "[type='submit']",
+  nationalityButton: "[clear='false']"
 
 }
-
-
   it.only('User Info Update - Sucess', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField). type (userData.userSucess.username)
@@ -37,7 +36,8 @@ const selectorsList = {
     cy.get(selectorsList.dateField).eq(0).clear().type("2150-03-10")
     cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.submitButton).eq(0).click()
-    cy.get('.oxd-toast-close')
+    cy.get('.oxd-text--toast-message')
+   
   
   })
   it('login - fail', () => {
@@ -46,6 +46,6 @@ const selectorsList = {
     cy.get(selectorsList.passwordField). type (userData.userFail.password)
     cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.wrongCredencialAlert)
-  
+    cy.get('.oxd-toast-close')
   })
 })
