@@ -17,7 +17,9 @@ const selectorsList = {
   dateField: "[placeholder='yyyy-dd-mm']",
   dateCloseButton: ".--close",
   submitButton: "[type='submit']",
-  nationalityButton: "[clear='false']"
+  genericComboBox: "[clear='false']",
+  vigesimoSetimoComboBox: ".oxd-select-dropdown > :nth-child(27)",
+  secondComboBox: ".oxd-select-dropdown > :nth-child(2)"
 
 }
   it.only('User Info Update - Sucess', () => {
@@ -37,8 +39,19 @@ const selectorsList = {
     cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.submitButton).eq(0).click()
     cy.get('.oxd-text--toast-message')
+
+
+
+    cy.get(selectorsList.genericComboBox).eq(0).click()
+    cy.get(selectorsList.vigesimoSetimoComboBox).click()
+    cy.get(selectorsList.genericComboBox).eq(1).click()
+    cy.get(selectorsList.secondComboBox).click()
+
+
+    
+    
    
-  
+    
   })
   it('login - fail', () => {
     cy.visit('/auth/login')
@@ -46,6 +59,6 @@ const selectorsList = {
     cy.get(selectorsList.passwordField). type (userData.userFail.password)
     cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.wrongCredencialAlert)
-    cy.get('.oxd-toast-close')
+    
   })
 })
