@@ -17,22 +17,34 @@ class MyInfoPage {
         return selectors
     }
 
-    fillMyInfo() {
-        cy.get(this.selectorsList().firstNameField).clear().type("FirstNameTest")
-        cy.get(this.selectorsList().lastNameField).clear().type("LastNameTest")
-        cy.get(this.selectorsList().genericField).eq(3).clear().type("EmployeeId")
-        cy.get(this.selectorsList().genericField).eq(4).clear().type("OtherIdTest")
-        cy.get(this.selectorsList().genericField).eq(5).clear().type("DriversLicenceTest")
-        cy.get(this.selectorsList().dateField).eq(0).clear().type("2150-03-10")
+    fillPersonalDetails(firstName,lastName) {
+        cy.get(this.selectorsList().firstNameField).clear().type(firstName)
+        cy.get(this.selectorsList().lastNameField).clear().type(lastName)
+
+    }
+
+
+    fillEmployeeDetails (employeeId,otherId, driversLicenseNumber, expiryDate) {
+        cy.get(this.selectorsList().genericField).eq(3).clear().type(employeeId)
+        cy.get(this.selectorsList().genericField).eq(4).clear().type(otherId)
+        cy.get(this.selectorsList().genericField).eq(5).clear().type(driversLicenseNumber)
+        cy.get(this.selectorsList().dateField).eq(0).clear().type(expiryDate)
         cy.get(this.selectorsList().dateCloseButton).click()
+    }
+
+    saveForm(){
+        
         cy.get(this.selectorsList().submitButton).eq(0).click()
-        cy.get('.oxd-text--toast-message')
+        cy.get('.oxd-text--toast-message')   
+
+    }
+ 
+    fillStatus(){
         cy.get(this.selectorsList().genericComboBox).eq(0).click()
         cy.get(this.selectorsList().vigesimoSetimoComboBox).click()
         cy.get(this.selectorsList().genericComboBox).eq(1).click()
         cy.get(this.selectorsList().secondComboBox).click()
-    
-}
+    }
 }
 
 export default MyInfoPage
